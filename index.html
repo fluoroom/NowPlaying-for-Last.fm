@@ -27,7 +27,7 @@
       }
       const urlParams = new URLSearchParams(window.location.search);
       localStorage.setItem("user", urlParams.get("user"));
-      if (!localStorage.getItem("user")) {
+      if (!localStorage.getItem("user") || localStorage.getItem("user")=="null") {
         localStorage.setItem("user", prompt("Enter your Last.fm user please:"));
       }
 
