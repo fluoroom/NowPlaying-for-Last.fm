@@ -113,6 +113,7 @@ body {
     background-color: #FFFFFF20 !important;
     border-radius: 25px;
     z-index: 3;
+    overflow: hidden;
 }
 
 .fadeInOut {
@@ -163,6 +164,14 @@ i.left {
 i.right {
     float: right;
     margin-left: 15px;
+}
+i{
+    transition: text-shadow 130ms;
+    text-shadow: rgba(255,255,255,0) 0em 0em 1em;
+}
+
+i:hover{
+    text-shadow: rgba(255,255,255,1) 0em 0em 1em;
 }
 
 .right {
