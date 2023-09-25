@@ -8,7 +8,7 @@
     />
     <meta
       name="description"
-      content="NowPlaying-For-Spotify is a smooth Spotify Connect visualizer, which display the music playing on Spotify"
+      content="NowPlaying-For-Last.fm is a smooth Last.fm visualizer, which displays the music playing on Last.fm"
     />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link id="playingcss" href="/styles/playing.css" rel="stylesheet" />
@@ -26,107 +26,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/scripts/scripts.js"></script>
     <script src="/scripts/cursor.js"></script>
-    <script src="/scripts/lastfm.js"></script>
-
-    <script>
-      if (localStorage.getItem("theme") == "test") {
-        $("#playingcss-test").attr("rel", "stylesheet");
-      }
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlUser = urlParams.get("user");
-      if (urlUser) {
-        localStorage.setItem("user", urlUser);
-      }
-      if (
-        !localStorage.getItem("user") ||
-        localStorage.getItem("user") == "null"
-      ) {
-        localStorage.setItem("user", prompt("Enter your Last.fm user please:"));
-      }
-
-      let actual = "";
-
-      loopForever();
-
-      // loop function
-      function loopForever() {
-        setInterval(async function () {
-          const apiKey = "f366cdff626d6631ecb68fd5398e150c";
-          const userName = localStorage.getItem("user");
-          if (!userName || userName == "null") {
-            return;
-          }
-          axios
-            .get(
-              `https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=${userName}&api_key=${apiKey}&format=json&limit=1&nowplaying=true&extended=true`
-            )
-            .then((data) => {
-              console.log(data.data.recenttracks.track[0]);
-              setInformations(data.data.recenttracks.track[0]);
-            });
-
-          function setInformations(response) {
-            titleSong = response.name;
-            artistSong = response.artist.name;
-            albumSong = response.album["#text"];
-            title = "%title% by %artist%"
-              .replace("%title%", titleSong)
-              .replace("%artist%", artistSong);
-            if (title === actual) {
-              return;
-            }
-            actual = title;
-            albumPicture = response.image[3]["#text"];
-            let defBg = false;
-            if (!albumPicture.length) {
-              albumPicture = response.artist.image[3]["#text"];
-            }
-            if (
-              albumPicture ===
-              "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-            ) {
-              albumPicture = "/images/no_song.png";
-              defBg = true;
-            }
-            albumPicture = albumPicture.replace("300x300", "2000x2000");
-
-            let img = new Image();
-            img.src = albumPicture;
-            $(img).on("load", function () {
-              $("#playing-div img").attr("src", albumPicture);
-              $("#img-wrapper").attr("style", "display:block;");
-              if (defBg) {
-                $("#img-wrapper").attr("style", "display:none;");
-              }
-              $("#background-image-div").attr(
-                "style",
-                "background: rgb(34,0,77); background: radial-gradient(circle, rgba(34,0,77,1) 0%, rgba(0,0,0,1) 100%);"
-              );
-              if (!defBg) {
-                $("#background-image-div").attr(
-                  "style",
-                  "background: url('" +
-                    albumPicture +
-                    "');background-size:cover;background-position: center center;"
-                );
-              }
-            });
-            $("#song-title").text(titleSong);
-            $("#song-artist").text(artistSong);
-            $("#song-album").text(albumSong);
-            document.title = title;
-          }
-
-          function noInformations() {
-            titleSong = "No music currently playing";
-            artistSong = "Please wait a few seconds while status is updating";
-            albumSong = "";
-            title = "No music - Spotify Connect - Now Playing";
-            albumPicture = "/images/no_song.png";
-          }
-        }, 2000);
-      }
-    </script>
   </head>
   <body>
     <div class="settings-div fadeInOut">
