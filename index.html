@@ -53,6 +53,9 @@
         setInterval(async function () {
           const apiKey = "f366cdff626d6631ecb68fd5398e150c";
           const userName = localStorage.getItem("user");
+          if (!userName || userName == "null") {
+            return;
+          }
           axios
             .get(
               `https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=${userName}&api_key=${apiKey}&format=json&limit=1&nowplaying=true&extended=true`
@@ -128,12 +131,15 @@
   <body>
     <div class="settings-div fadeInOut">
       <a id="fullscreen-button" href="#" onclick="fullscreen();"
-        ><i id="fullscreen-icon" class="material-icons settings-icon"
+        ><i id="fullscreen-icon" class="material-icons theme-icon"
           >fullscreen</i
         ></a
       >
       <a id="theme-button" href="#" onclick="theme();"
         ><i id="theme-icon" class="material-icons theme-icon">palette</i></a
+      >
+      <a id="theme-button" href="#" onclick="changeUser();"
+        ><i id="theme-icon" class="material-icons theme-icon">person</i></a
       >
     </div>
     <div id="playing-div">

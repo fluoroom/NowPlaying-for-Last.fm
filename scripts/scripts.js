@@ -1,6 +1,11 @@
 /* Fullscreen */
 let elem = document.documentElement;
 
+function changeUser(){
+    localStorage.setItem("user", null);
+    localStorage.setItem("user", prompt("Enter your Last.fm user please:"));
+}
+
 /* View in fullscreen */
 function openFullscreen() {
     if (elem.requestFullscreen) {
