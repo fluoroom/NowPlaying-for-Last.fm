@@ -12,10 +12,17 @@
     />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link id="playingcss" href="/styles/playing.css" rel="stylesheet" />
-    <link id="playingcss-test" href="/styles/playingtest.css" rel="stylesheet alternate">
+    <link
+      id="playingcss-test"
+      href="/styles/playingtest.css"
+      rel="stylesheet alternate"
+    />
     <link href="/styles/productsans.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/scripts/scripts.js"></script>
     <script src="/scripts/cursor.js"></script>
@@ -26,8 +33,14 @@
         $("#playingcss-test").attr("rel", "stylesheet");
       }
       const urlParams = new URLSearchParams(window.location.search);
-      localStorage.setItem("user", urlParams.get("user"));
-      if (!localStorage.getItem("user") || localStorage.getItem("user")=="null") {
+      const urlUser = urlParams.get("user");
+      if (urlUser) {
+        localStorage.setItem("user", urlUser);
+      }
+      if (
+        !localStorage.getItem("user") ||
+        localStorage.getItem("user") == "null"
+      ) {
         localStorage.setItem("user", prompt("Enter your Last.fm user please:"));
       }
 
