@@ -18,7 +18,6 @@ body {
     -webkit-filter: blur(20px);
     transform: scale(1.2);
     z-index: inherit;
-    transition: background ease 2s;
 }
 
 .darken {
