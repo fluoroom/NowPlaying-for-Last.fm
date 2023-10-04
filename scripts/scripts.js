@@ -66,12 +66,12 @@ function setBlur(value = 1) {
     el.classList.remove("background-image-div-" + number);
   });
 }
-setBlur(parseInt(localStorage.getItem("blur")));
+setBlur(parseInt(localStorage.getItem("blur")||"1"));
 
 function blurr() {
   const blur = localStorage.getItem("blur");
   console.log(blur);
-  if (blur == null || blur === "1" || blur === 1) {
+  if (blur == null || blur === "1" || blur === 1 || blur === "NaN") {
     setBlur(2);
     return;
   }
