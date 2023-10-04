@@ -1,6 +1,3 @@
-/* Fullscreen */
-let elem = document.documentElement;
-
 function changeUser() {
   let newUser;
   let prompted;
@@ -19,6 +16,7 @@ function changeUser() {
 
 /* View in fullscreen */
 function openFullscreen() {
+  let elem = document.documentElement;
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
   } else if (elem.mozRequestFullScreen) {
@@ -58,22 +56,35 @@ function fullscreen() {
   }
 }
 
-function theme() {
-  if (
-    localStorage.getItem("theme") == null ||
-    localStorage.getItem("theme") == "original"
-  ) {
-    localStorage.setItem("theme", "test");
-    $("#playingcss-test").attr("rel", "stylesheet");
-  } else {
-    localStorage.setItem("theme", "original");
-    $("#playingcss-test").attr("rel", "stylesheet alternate");
+function setBlur(value = 1) {
+  const el = document.getElementById("background-image-div");
+  let numbers = [0, 1, 2];
+  delete numbers[value];
+  localStorage.setItem("blur", value.toString());
+  el.classList.add("background-image-div-" + value);
+  numbers.forEach((number) => {
+    el.classList.remove("background-image-div-" + number);
+  });
+}
+setBlur(parseInt(localStorage.getItem("blur")));
+
+function blurr() {
+  const blur = localStorage.getItem("blur");
+  console.log(blur);
+  if (blur == null || blur === "1" || blur === 1) {
+    setBlur(2);
+    return;
+  }
+  if (blur === "2" || blur === 2) {
+    setBlur(0);
+    return;
+  }
+  if (blur === "0" || blur === 0) {
+    setBlur(1);
+    return;
   }
 }
 
-if (localStorage.getItem("theme") == "test") {
-  $("#playingcss-test").attr("rel", "stylesheet");
-}
 const urlParams = new URLSearchParams(window.location.search);
 const urlUser = urlParams.get("u");
 if (urlUser) {
@@ -91,7 +102,15 @@ if (!localStorage.getItem("user")) {
 }
 
 let actual = "";
+let needRefresh = 0;
 
+function genBgStyle(string) {
+  return (
+    "background: url(" +
+    string +
+    ");background-size: cover;background-position: center center;"
+  );
+}
 function setInformations(response) {
   titleSong = response.name;
   artistSong = response.artist.name;
@@ -99,49 +118,45 @@ function setInformations(response) {
   title = "%title% by %artist%"
     .replace("%title%", titleSong)
     .replace("%artist%", artistSong);
-  if (title === actual) {
+  if (title === actual && needRefresh === 0) {
     return;
   }
   actual = title;
   albumPicture = response.image[3]["#text"];
-  let defBg = false;
-  if (!albumPicture.length) {
-    albumPicture = response.artist.image[3]["#text"];
-  }
+  let noPic = false;
+  const defBg = localStorage.getItem("backgroundImgAlways") === "1";
   if (
     albumPicture ===
     "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
   ) {
     albumPicture = "/images/no_song.png";
-    defBg = true;
+    noPic = true;
   }
   albumPicture = albumPicture.replace("300x300", "2000x2000");
 
-  let img = new Image();
-  img.src = albumPicture;
-  $(img).on("load", function () {
+  if (noPic) {
+    $("#img-wrapper").attr("style", "display:none;");
+  } else {
     $("#playing-div img").attr("src", albumPicture);
     $("#img-wrapper").attr("style", "display:block;");
-    if (defBg) {
-      $("#img-wrapper").attr("style", "display:none;");
-    }
+  }
+  if (!defBg && !noPic) {
     $("#background-image-div").attr(
       "style",
-      "background: rgb(34,0,77); background: radial-gradient(circle, rgba(34,0,77,1) 0%, rgba(0,0,0,1) 100%);"
+      genBgStyle("'"+albumPicture+"'")
     );
-    if (!defBg) {
-      $("#background-image-div").attr(
-        "style",
-        "background: url('" +
-          albumPicture +
-          "');background-size:cover;background-position: center center;"
-      );
-    }
-  });
+  } else {
+    const defBgBlob = localStorage.getItem("backgroundImg");
+    $("#background-image-div").attr(
+      "style",
+      genBgStyle(defBgBlob)
+    );
+  }
   $("#song-title").text(titleSong);
   $("#song-artist").text(artistSong);
   $("#song-album").text(albumSong);
   document.title = title;
+  needRefresh=0;
 }
 
 async function dataCheck() {
@@ -163,3 +178,53 @@ async function dataCheck() {
 setInterval(async function () {
   dataCheck();
 }, 3000);
+
+function changeBackrgound(value = 1) {
+  const el = document.getElementById("background-image-div");
+  let numbers = [0, 1, 2];
+  delete numbers[value];
+  localStorage.setItem("blur", value.toString());
+  el.classList.add("background-image-div-" + value);
+  numbers.forEach((number) => {
+    el.classList.remove("background-image-div-" + number);
+  });
+}
+
+function backgroundIcon() {
+  icon = document.getElementById("bgfileinput");
+  icon.click();
+}
+
+function backgroundInput() {
+  const input = document.getElementById("bgfileinput");
+  const file = input.files[0];
+  let reader = new FileReader();
+  reader.addEventListener("load", function () {
+    readBackground(reader.result);
+  });
+  reader.readAsDataURL(file);
+}
+
+function readBackground(blob) {
+  actual = localStorage.getItem("backgroundImg");
+  if (actual) {
+    if (!confirm("Do you want to change the default background?")) {
+      return;
+    }
+  }
+  localStorage.setItem("backgroundImg", blob);
+  needRefresh = 1;
+  dataCheck();
+}
+
+function toggleDefBgAlways() {
+  const actual = localStorage.getItem("backgroundImgAlways");
+  console.log(actual);
+  if (actual === "0") {
+    localStorage.setItem("backgroundImgAlways", "1");
+  } else {
+    localStorage.setItem("backgroundImgAlways", "0");
+  }
+  needRefresh = 1;
+  dataCheck();
+}

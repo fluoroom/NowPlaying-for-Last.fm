@@ -12,11 +12,6 @@
     />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link id="playingcss" href="/styles/playing.css" rel="stylesheet" />
-    <link
-      id="playingcss-test"
-      href="/styles/playingtest.css"
-      rel="stylesheet alternate"
-    />
     <link href="/styles/productsans.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link
@@ -24,21 +19,26 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/scripts/scripts.js"></script>
-    <script src="/scripts/cursor.js"></script>
   </head>
   <body>
+    <input type="file" name="bgfileinput" id="bgfileinput" class="hidden" onchange="backgroundInput();"/>
     <div class="settings-div fadeInOut">
       <a id="fullscreen-button" href="#" onclick="fullscreen();"
         ><i id="fullscreen-icon" class="material-icons theme-icon"
           >fullscreen</i
         ></a
       >
-      <a id="theme-button" href="#" onclick="theme();"
+      <a id="theme-button" href="#" onclick="blurr();"
         ><i id="theme-icon" class="material-icons theme-icon">palette</i></a
       >
-      <a id="theme-button" href="#" onclick="changeUser();"
+      <a id="theme-button" href="#" onclick="changeUser();" alt="Change User"
         ><i id="theme-icon" class="material-icons theme-icon">person</i></a
+      >
+      <a id="theme-button" href="#" onclick="backgroundIcon();"
+        ><i id="theme-icon" class="material-icons theme-icon">add_photo_alternate</i></a
+      >
+      <a id="theme-button" href="#" onclick="toggleDefBgAlways();"
+        ><i id="theme-icon" class="material-icons theme-icon">photo_frame</i></a
       >
     </div>
     <div id="playing-div">
@@ -54,7 +54,8 @@
       </div>
     </div>
     <div
-      id="background-image-div"
+    id="background-image-div"
+      class="background-image-div-1"
       style="
         background: url('/images/no_song.png');
         background-size: cover;
@@ -63,5 +64,8 @@
     >
       <div class="darken"></div>
     </div>
+    
+    <script src="/scripts/scripts.js"></script>
+    <script src="/scripts/cursor.js"></script>
   </body>
 </html>
