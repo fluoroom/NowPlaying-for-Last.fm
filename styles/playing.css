@@ -26,7 +26,7 @@ body {
 .background-image-div-2 {
   filter: blur(48px);
   -webkit-filter: blur(48px);
-  transform: scale(1.45);
+  transform: scale(1.3);
 }
 
 .background-image-div-0 {
