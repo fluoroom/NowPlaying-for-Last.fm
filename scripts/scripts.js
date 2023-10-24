@@ -66,7 +66,7 @@ function setBlur(value = 1) {
     el.classList.remove("background-image-div-" + number);
   });
 }
-setBlur(parseInt(localStorage.getItem("blur")||"1"));
+setBlur(parseInt(localStorage.getItem("blur") || "1"));
 
 function blurr() {
   const blur = localStorage.getItem("blur");
@@ -111,6 +111,8 @@ function genBgStyle(string) {
     ");background-size: cover;background-position: center center;"
   );
 }
+
+let imgBrightness = 255;
 function setInformations(response) {
   titleSong = response.name;
   artistSong = response.artist.name;
@@ -123,11 +125,11 @@ function setInformations(response) {
   }
   actual = title;
   albumPicture = response.image[3]["#text"];
+  let brightness = 0;
   let noPic = false;
   const defBg = localStorage.getItem("backgroundImgAlways") === "1";
   if (
-    albumPicture ===
-    "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    !albumPicture
   ) {
     albumPicture = "/images/no_song.png";
     noPic = true;
@@ -143,7 +145,7 @@ function setInformations(response) {
   if (!defBg && !noPic) {
     $("#background-image-div").attr(
       "style",
-      genBgStyle("'"+albumPicture+"'")
+      genBgStyle("'" + albumPicture + "'")
     );
   } else {
     const defBgBlob = localStorage.getItem("backgroundImg");
@@ -156,7 +158,7 @@ function setInformations(response) {
   $("#song-artist").text(artistSong);
   $("#song-album").text(albumSong);
   document.title = title;
-  needRefresh=0;
+  needRefresh = 0;
 }
 
 async function dataCheck() {
