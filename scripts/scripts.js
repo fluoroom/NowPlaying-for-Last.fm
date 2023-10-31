@@ -206,8 +206,26 @@ function backgroundInput() {
   });
   reader.readAsDataURL(file);
 }
+function backgroundInputUrl() {
+  const prompted = "https://images-na.ssl-images-amazon.com/images/I/51mgMztDoAL._SL500_._AC_SL500_.jpg"
+  //const prompted = prompt("Enter a valid image URL:");
+
+  axios.get(prompted, {
+    responseType: "blob"
+  }).then((res) => {
+    console.log(res.data)
+    const file = res.data;
+    let reader = new FileReader();
+    reader.addEventListener("load", function () {
+      readBackground(reader.result);
+    });
+    reader.readAsDataURL(file);
+  });
+
+}
 
 function readBackground(blob) {
+  console.log(blob)
   actual = localStorage.getItem("backgroundImg");
   if (actual) {
     if (!confirm("Do you want to change the default background?")) {

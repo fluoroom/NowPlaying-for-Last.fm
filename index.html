@@ -21,7 +21,20 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <input type="file" name="bgfileinput" id="bgfileinput" class="hidden" onchange="backgroundInput();"/>
+    <input
+      type="file"
+      name="bgfileinput"
+      id="bgfileinput"
+      class="hidden"
+      onchange="backgroundInput();"
+    />
+    <input
+      type="text"
+      name="bgfileinputurl"
+      id="bgfileinputurl"
+      class="hidden"
+      onchange="backgroundInputUrl();"
+    />
     <div class="settings-div fadeInOut">
       <a id="fullscreen-button" href="#" onclick="fullscreen();"
         ><i id="fullscreen-icon" class="material-icons theme-icon"
@@ -35,8 +48,10 @@
         ><i id="theme-icon" class="material-icons theme-icon">person</i></a
       >
       <a id="theme-button" href="#" onclick="backgroundIcon();"
-        ><i id="theme-icon" class="material-icons theme-icon">add_photo_alternate</i></a
+        ><i id="theme-icon" class="material-icons theme-icon">add_a_photo</i></a
       >
+      <a id="theme-button" href="#" onclick="backgroundInputUrl();"
+        ><i id="theme-icon" class="material-icons theme-icon">add_photo_alternate</i></a>
       <a id="theme-button" href="#" onclick="toggleDefBgAlways();"
         ><i id="theme-icon" class="material-icons theme-icon">photo_frame</i></a
       >
@@ -54,7 +69,7 @@
       </div>
     </div>
     <div
-    id="background-image-div"
+      id="background-image-div"
       class="background-image-div-1"
       style="
         background: url('/images/no_song.png');
@@ -64,7 +79,7 @@
     >
       <div class="darken"></div>
     </div>
-    
+
     <script src="/scripts/imgbrightness.js"></script>
     <script src="/scripts/scripts.js"></script>
     <script src="/scripts/cursor.js"></script>
