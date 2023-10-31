@@ -207,8 +207,7 @@ function backgroundInput() {
   reader.readAsDataURL(file);
 }
 function backgroundInputUrl() {
-  const prompted = "https://images-na.ssl-images-amazon.com/images/I/51mgMztDoAL._SL500_._AC_SL500_.jpg"
-  //const prompted = prompt("Enter a valid image URL:");
+  const prompted = prompt("Enter a valid image URL:");
 
   axios.get(prompted, {
     responseType: "blob"
