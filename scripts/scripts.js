@@ -247,3 +247,8 @@ function toggleDefBgAlways() {
   needRefresh = 1;
   dataCheck();
 }
+
+function toggleContrast() {
+  const contrastdiv = document.getElementById("contrast");
+  contrastdiv.classList.toggle("darken");
+}

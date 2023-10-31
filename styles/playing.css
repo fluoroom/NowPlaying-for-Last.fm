@@ -35,16 +35,19 @@ body {
   transform: scale(1);
 }
 
-.darken {
+#contrast {
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   background-position: center top;
-  background: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(0, 0, 0, 0);
   position: fixed;
   z-index: 1;
   height: auto;
+}
+.darken {
+  background: rgba(0, 0, 0, 0.25) !important;
 }
 
 #playing-div {
@@ -142,8 +145,8 @@ body {
 
 .material-icons {
   vertical-align: middle;
-  width:1em;
-  margin:0 .15em;
+  width: 1em;
+  margin: 0 0.15em;
 }
 
 span,
