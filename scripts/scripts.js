@@ -335,3 +335,33 @@ function contrastCheck() {
   }
 }
 contrastCheck();
+
+function toggleContrastDef() {
+  const contrastdiv = document.getElementById("contrastDef");
+  const actual = localStorage.getItem("contrastDef");
+  console.log(actual);
+  if (actual === "0") {
+    localStorage.setItem("contrastDef", "1");
+    contrastdiv.classList.add("darken");
+  } else {
+    localStorage.setItem("contrastDef", "0");
+    contrastdiv.classList.remove("darken");
+  }
+
+}
+
+function contrastDefCheck() {
+  const actual = localStorage.getItem("contrastDef");
+  const contrastdiv = document.getElementById("contrastDef");
+  if (actual === null) {
+    localStorage.setItem("contrastDef", "1");
+    contrastdiv.classList.add("darken");
+    return
+  }
+  if (actual === "0") {
+    contrastdiv.classList.remove("darken");
+  } else {
+    contrastdiv.classList.add("darken");
+  }
+}
+contrastDefCheck();
