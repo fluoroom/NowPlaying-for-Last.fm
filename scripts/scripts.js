@@ -272,6 +272,8 @@ function backgroundInputUrl(url = null) {
   } else {
     prompted = prompt("Enter a valid image URL:");
   }
+  readBackground(prompted);
+  return;
   axios.get(prompted, {
     responseType: "blob"
   }).then((res) => {
