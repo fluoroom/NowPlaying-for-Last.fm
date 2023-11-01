@@ -43,7 +43,7 @@ body {
     transform: scaleY(1);
   }
   to{
-    transform: scaleY(1.75);
+    transform: scaleY(1.9);
   }
 }
 
