@@ -265,9 +265,12 @@ function backgroundInput() {
   reader.readAsDataURL(file);
 }
 function backgroundInputUrl(url = null) {
-  let prompted = prompt("Enter a valid image URL:");
+  let prompted = "";
   if (url) {
     prompted = url;
+    alert(url);
+  } else {
+    prompted = prompt("Enter a valid image URL:");
   }
   axios.get(prompted, {
     responseType: "blob"
