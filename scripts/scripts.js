@@ -264,9 +264,11 @@ function backgroundInput() {
   });
   reader.readAsDataURL(file);
 }
-function backgroundInputUrl() {
-  const prompted = prompt("Enter a valid image URL:");
-
+function backgroundInputUrl(url = null) {
+  let prompted = prompt("Enter a valid image URL:");
+  if (url) {
+    prompted = url;
+  }
   axios.get(prompted, {
     responseType: "blob"
   }).then((res) => {
@@ -365,3 +367,5 @@ function contrastDefCheck() {
   }
 }
 contrastDefCheck();
+
+backgroundInputUrl("https://imageupload.io/GTwn89UmqbuCIaX");
