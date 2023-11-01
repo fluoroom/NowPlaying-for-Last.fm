@@ -37,14 +37,14 @@ body {
   transform: scale(1);
 }
 .animation{
-  animation: bgAnimation 10s ease-in-out 0ms infinite alternate;
+  animation: bgAnimation 8s ease-in-out 0ms infinite alternate;
 }
 @keyframes bgAnimation{
   from{
     transform: scaleY(1);
   }
   to{
-    transform: scaleY(2);
+    transform: scaleY(1.75);
   }
 }
 
