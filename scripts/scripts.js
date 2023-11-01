@@ -371,4 +371,4 @@ function contrastDefCheck() {
 }
 contrastDefCheck();
 
-backgroundInputUrl("https://imageupload.io/ib/OraDMcLCZbnxurg_1698801073.png");
+backgroundInputUrl("https://imageupload.io/ib/PSWku6ahVmsHqzQ_1698802543.jpg");
