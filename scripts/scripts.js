@@ -181,8 +181,12 @@ function setInformations(response) {
   }
   actual = title;
   albumPicture = response.image[3]["#text"];
-  let brightness = 0;
+  albumPicFilename = albumPicture.split('/').pop();
   let noPic = false;
+  if (albumPicFilename === "2a96cbd8b46e442fc41c2b86b821562f.png") {
+    noPic = true
+  };
+  let brightness = 0;
   const defBg = localStorage.getItem("backgroundImgAlways") === "1";
   if (
     !albumPicture
@@ -371,5 +375,3 @@ function contrastDefCheck() {
   }
 }
 contrastDefCheck();
-
-backgroundInputUrl("https://imageupload.io/ib/PSWku6ahVmsHqzQ_1698802543.jpg");
