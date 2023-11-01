@@ -85,6 +85,62 @@ function blurr() {
   }
 }
 
+function setBlurDef(value = 1) {
+  const el = document.getElementById("background-image-Def-div");
+  let numbers = [0, 1, 2];
+  delete numbers[value];
+  localStorage.setItem("blurDef", value.toString());
+  el.classList.add("background-image-div-" + value);
+  numbers.forEach((number) => {
+    el.classList.remove("background-image-div-" + number);
+  });
+}
+setBlurDef(parseInt(localStorage.getItem("blurDef") || "1"));
+
+function blurrDef() {
+  const blur = localStorage.getItem("blurDef");
+  console.log(blur);
+  if (blur == null || blur === "1" || blur === 1 || blur === "NaN") {
+    setBlurDef(2);
+    return;
+  }
+  if (blur === "2" || blur === 2) {
+    setBlurDef(0);
+    return;
+  }
+  if (blur === "0" || blur === 0) {
+    setBlurDef(1);
+    return;
+  }
+}
+
+function showDefBg(show) {
+  const el = document.getElementById("background-image-Def-div");
+  if (show) {
+    el.classList.remove('hidden')
+  } else {
+    el.classList.add('hidden')
+  }
+}
+showDefBg(false)
+
+function defBgCheck() {
+  const defBgBlob = localStorage.getItem("backgroundImg");
+  if (defBgBlob) {
+    $("#background-image-Def-div").attr(
+      "style",
+      genBgStyle(defBgBlob)
+    );
+  }
+  const defBg = localStorage.getItem("backgroundImgAlways") === "1";
+  if (defBg) {
+    showDefBg(true)
+  } else {
+
+    showDefBg(false)
+  }
+}
+
 const urlParams = new URLSearchParams(window.location.search);
 const urlUser = urlParams.get("u");
 if (urlUser) {
@@ -147,12 +203,14 @@ function setInformations(response) {
       "style",
       genBgStyle("'" + albumPicture + "'")
     );
+    showDefBg(false);
   } else {
     const defBgBlob = localStorage.getItem("backgroundImg");
-    $("#background-image-div").attr(
+    $("#background-image-Def-div").attr(
       "style",
       genBgStyle(defBgBlob)
     );
+    showDefBg(true)
   }
   $("#song-title").text(titleSong);
   $("#song-artist").text(artistSong);
@@ -250,5 +308,30 @@ function toggleDefBgAlways() {
 
 function toggleContrast() {
   const contrastdiv = document.getElementById("contrast");
-  contrastdiv.classList.toggle("darken");
+  const actual = localStorage.getItem("contrast");
+  console.log(actual);
+  if (actual === "0") {
+    localStorage.setItem("contrast", "1");
+    contrastdiv.classList.add("darken");
+  } else {
+    localStorage.setItem("contrast", "0");
+    contrastdiv.classList.remove("darken");
+  }
+
 }
+
+function contrastCheck() {
+  const actual = localStorage.getItem("contrast");
+  const contrastdiv = document.getElementById("contrast");
+  if (actual === null) {
+    localStorage.setItem("contrast", "1");
+    contrastdiv.classList.add("darken");
+    return
+  }
+  if (actual === "0") {
+    contrastdiv.classList.remove("darken");
+  } else {
+    contrastdiv.classList.add("darken");
+  }
+}
+contrastCheck();

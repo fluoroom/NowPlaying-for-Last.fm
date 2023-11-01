@@ -36,27 +36,31 @@
       onchange="backgroundInputUrl();"
     />
     <div class="settings-div fadeInOut">
-      <a id="fullscreen-button" href="#" onclick="fullscreen();"
+      <a title="fullscreen" id="fullscreen-button" href="#" onclick="fullscreen();"
         ><i id="fullscreen-icon" class="material-icons theme-icon"
           >fullscreen</i
         ></a
       >
-      <a id="theme-button" href="#" onclick="blurr();"
+      <a title="background blur level" id="theme-button" href="#" onclick="blurr();"
         ><i id="theme-icon" class="material-icons theme-icon">palette</i></a
       >
-      <a id="theme-button" href="#" onclick="changeUser();" alt="Change User"
+      <a title="select last.fm user" id="theme-button" href="#" onclick="changeUser();" alt="Change User"
         ><i id="theme-icon" class="material-icons theme-icon">person</i></a
       >
-      <a id="theme-button" href="#" onclick="backgroundIcon();"
+      
+      <a title="background light dim" id="theme-button" href="#" onclick="toggleContrast();"
+        ><i id="theme-icon" class="material-icons theme-icon">contrast</i></a
+      >
+      <a title="set default background from file" id="theme-button" href="#" onclick="backgroundIcon();"
         ><i id="theme-icon" class="material-icons theme-icon">add_a_photo</i></a
       >
-      <a id="theme-button" href="#" onclick="backgroundInputUrl();"
+      <a title="set default background from URL" id="theme-button" href="#" onclick="backgroundInputUrl();"
         ><i id="theme-icon" class="material-icons theme-icon">add_photo_alternate</i></a>
-      <a id="theme-button" href="#" onclick="toggleDefBgAlways();"
+      <a title="persist default background even when song has image" id="theme-button" href="#" onclick="toggleDefBgAlways();"
         ><i id="theme-icon" class="material-icons theme-icon">photo_frame</i></a
       >
-      <a id="theme-button" href="#" onclick="toggleContrast();"
-        ><i id="theme-icon" class="material-icons theme-icon">contrast</i></a
+      <a title="default background blur level" id="theme-button" href="#" onclick="blurrDef();"
+        ><i id="theme-icon" class="material-icons theme-icon">palette</i></a
       >
     </div>
     <div id="playing-div">
@@ -71,6 +75,7 @@
         <h2 id="song-album"></h2>
       </div>
     </div>
+    
     <div
       id="background-image-div"
       class="background-image-div-1"
@@ -80,8 +85,18 @@
         background-position: center center;
       "
     >
-      <div id="contrast"></div>
     </div>
+    <div
+      id="background-image-Def-div"
+      class="background-image-div-1"
+      style="
+        background: url('/images/no_song.png');
+        background-size: cover;
+        background-position: center center;
+      "
+    >
+    </div>
+    <div id="contrast"></div>
 
     <script src="/scripts/imgbrightness.js"></script>
     <script src="/scripts/scripts.js"></script>
