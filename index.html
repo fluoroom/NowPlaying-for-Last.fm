@@ -36,34 +36,89 @@
       onchange="backgroundInputUrl();"
     />
     <div class="settings-div fadeInOut">
-      <a title="fullscreen" id="fullscreen-button" href="#" onclick="fullscreen();"
+      <a
+        title="fullscreen"
+        id="fullscreen-button"
+        href="#"
+        onclick="fullscreen();"
         ><i id="fullscreen-icon" class="material-icons theme-icon"
           >fullscreen</i
         ></a
       >
-      <a title="background blur level" id="theme-button" href="#" onclick="blurr();"
+      <a
+        title="background blur level"
+        id="theme-button"
+        href="#"
+        onclick="blurr();"
         ><i id="theme-icon" class="material-icons theme-icon">palette</i></a
       >
-      <a title="select last.fm user" id="theme-button" href="#" onclick="changeUser();" alt="Change User"
+      <a
+        title="select last.fm user"
+        id="theme-button"
+        href="#"
+        onclick="changeUser();"
+        alt="Change User"
         ><i id="theme-icon" class="material-icons theme-icon">person</i></a
       >
-      
-      <a title="background light dim" id="theme-button" href="#" onclick="toggleContrast();"
+
+      <a
+        title="background light dim"
+        id="theme-button"
+        href="#"
+        onclick="toggleContrast();"
         ><i id="theme-icon" class="material-icons theme-icon">contrast</i></a
       >
-      <a title="set default background from file" id="theme-button" href="#" onclick="backgroundIcon();"
+      <a
+        title="animate background"
+        id="theme-button"
+        href="#"
+        onclick="toggleAnimation();"
+        ><i id="theme-icon" class="material-icons theme-icon">airwave</i></a
+      >
+      <span style="margin:0 1em;">custom background:</span>
+      <a
+        title="set custom background from file"
+        id="theme-button"
+        href="#"
+        onclick="backgroundIcon();"
         ><i id="theme-icon" class="material-icons theme-icon">add_a_photo</i></a
       >
-      <a title="set default background from URL" id="theme-button" href="#" onclick="backgroundInputUrl();"
-        ><i id="theme-icon" class="material-icons theme-icon">add_photo_alternate</i></a>
-      <a title="persist default background even when song has image" id="theme-button" href="#" onclick="toggleDefBgAlways();"
+      <a
+        title="set custom background from URL"
+        id="theme-button"
+        href="#"
+        onclick="backgroundInputUrl();"
+        ><i id="theme-icon" class="material-icons theme-icon"
+          >add_photo_alternate</i
+        ></a
+      >
+      <a
+        title="persist custom background even when song has image"
+        id="theme-button"
+        href="#"
+        onclick="toggleDefBgAlways();"
         ><i id="theme-icon" class="material-icons theme-icon">photo_frame</i></a
       >
-      <a title="default background blur level" id="theme-button" href="#" onclick="blurrDef();"
+      <a
+        title="custom background blur level"
+        id="theme-button"
+        href="#"
+        onclick="blurrDef();"
         ><i id="theme-icon" class="material-icons theme-icon">palette</i></a
       >
-      <a title="default background light dim" id="theme-button" href="#" onclick="toggleContrastDef();"
+      <a
+        title="custom background light dim"
+        id="theme-button"
+        href="#"
+        onclick="toggleContrastDef();"
         ><i id="theme-icon" class="material-icons theme-icon">contrast</i></a
+      >
+      <a
+        title="animate custom background"
+        id="theme-button"
+        href="#"
+        onclick="toggleAnimationDef();"
+        ><i id="theme-icon" class="material-icons theme-icon">airwave</i></a
       >
     </div>
     <div id="playing-div">
@@ -78,29 +133,31 @@
         <h2 id="song-album"></h2>
       </div>
     </div>
-    
-    <div
-      id="background-image-div"
-      class="background-image-div-1"
-      style="
-        background: url('/images/no_song.png');
-        background-size: cover;
-        background-position: center center;
-      "
-    >
-    <div id="contrast"></div>
+    <div id="bgwrapper" class="background-image-div">
+      <div
+        id="background-image-div"
+        class="background-image-div-1"
+        style="
+          background: url('/images/no_song.png');
+          background-size: cover;
+          background-position: center center;
+        "
+      >
+        <div id="contrast"></div>
+      </div>
     </div>
-    <div
-      id="background-image-Def-div"
-      class="background-image-div-1"
-      style="
-        background: url('/images/no_song.png');
-        background-size: cover;
-        background-position: center center;
-      "
-    >
+    <div id="bgwrapperDef" class="background-image-div">
+      <div
+        id="background-image-Def-div"
+        class="background-image-div-1"
+        style="
+          background: url('/images/no_song.png');
+          background-size: cover;
+          background-position: center center;
+        "
+      ></div>
+    </div>
     <div id="contrastDef"></div>
-    </div>
 
     <script src="/scripts/imgbrightness.js"></script>
     <script src="/scripts/scripts.js"></script>

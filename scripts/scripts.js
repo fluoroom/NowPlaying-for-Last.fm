@@ -374,4 +374,66 @@ function contrastDefCheck() {
     contrastdiv.classList.add("darken");
   }
 }
+
+function toggleAnimation() {
+  const div = document.getElementById("bgwrapper");
+  const actual = localStorage.getItem("animation");
+  console.log(actual);
+  if (actual === "0") {
+    localStorage.setItem("animation", "1");
+    div.classList.add("animation");
+  } else {
+    localStorage.setItem("animation", "0");
+    div.classList.remove("animation");
+  }
+
+}
+
+function animationCheck() {
+  const actual = localStorage.getItem("animation");
+  const div = document.getElementById("bgwrapper");
+  if (actual === null) {
+    localStorage.setItem("animation", "0");
+    div.classList.remove("animation");
+    return
+  }
+  if (actual === "0") {
+    div.classList.remove("animation");
+  } else {
+    div.classList.add("animation");
+  }
+}
+
+function toggleAnimationDef() {
+  const div = document.getElementById("bgwrapperDef");
+  const actual = localStorage.getItem("animationDef");
+  console.log(actual);
+  if (actual === "0") {
+    localStorage.setItem("animationDef", "1");
+    div.classList.add("animation");
+  } else {
+    localStorage.setItem("animationDef", "0");
+    div.classList.remove("animation");
+  }
+
+}
+
+function animationDefCheck() {
+  const actual = localStorage.getItem("animationDef");
+  const div = document.getElementById("bgwrapperDef");
+  if (actual === null) {
+    localStorage.setItem("animationDef", "1");
+    div.classList.add("animation");
+    return
+  }
+  if (actual === "0") {
+    div.classList.remove("animation");
+  } else {
+    div.classList.add("animation");
+  }
+}
+
 contrastDefCheck();
+contrastDefCheck();
+animationCheck();
+animationDefCheck();
