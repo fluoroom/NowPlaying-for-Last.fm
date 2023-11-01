@@ -268,7 +268,6 @@ function backgroundInputUrl(url = null) {
   let prompted = "";
   if (url) {
     prompted = url;
-    alert(url);
   } else {
     prompted = prompt("Enter a valid image URL:");
   }
