@@ -19,16 +19,16 @@ body {
   background-position: center center;
 }
 .background-image-div-1 {
-  filter: blur(20px)  brightness(1.1);
-  -webkit-filter: blur(20px)  brightness(1.1);
+  filter: blur(20px) contrast(1.05) brightness(1.1);
+  -webkit-filter: blur(20px) contrast(1.05) brightness(1.1);
   transform: scale(1.2);
 }
 
 .background-image-div-2 {
-  filter: blur(48px)  brightness(1.3);
-  -webkit-filter: blur(48px)  brightness(1.3);
+  filter: blur(48px) contrast(1.1) brightness(1.3);
+  -webkit-filter: blur(48px) contrast(1.1) brightness(1.3);
   transform: scale(1.3);
-  animation: bgAnimation 10s ease-in-out 0ms infinite alternate;
+  /*animation: bgAnimation 10s ease-in-out 0ms infinite alternate;*/
 }
 
 .background-image-div-0 {
