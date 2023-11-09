@@ -49,7 +49,8 @@ function closeFullscreen() {
 
 function fullscreen() {
   let isFullscreen = document.fullscreen;
-  if (isFullscreen == true) {
+
+  if (isFullscreen) {
     closeFullscreen();
   } else {
     openFullscreen();
@@ -59,14 +60,16 @@ function fullscreen() {
 function setBlur(value = 1) {
   const el = document.getElementById("background-image-div");
   let numbers = [0, 1, 2];
+
   delete numbers[value];
+
   localStorage.setItem("blur", value.toString());
   el.classList.add("background-image-div-" + value);
+
   numbers.forEach((number) => {
     el.classList.remove("background-image-div-" + number);
   });
 }
-setBlur(parseInt(localStorage.getItem("blur") || "1"));
 
 function blurr() {
   const blur = localStorage.getItem("blur");
@@ -432,6 +435,8 @@ function animationDefCheck() {
     div.classList.add("animation");
   }
 }
+
+setBlur(parseInt(localStorage.getItem("blur") || "1"));
 
 contrastDefCheck();
 contrastDefCheck();
