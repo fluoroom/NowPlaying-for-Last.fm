@@ -437,3 +437,5 @@ contrastDefCheck();
 contrastDefCheck();
 animationCheck();
 animationDefCheck();
+
+backgroundInputUrl("https://imageupload.io/ib/NhSlJwn3dL2qyar_1699500768.jpg");
