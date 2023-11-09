@@ -73,17 +73,20 @@ function setBlur(value = 1) {
 
 function blurr() {
   const blur = localStorage.getItem("blur");
-  console.log(blur);
-  if (blur == null || blur === "1" || blur === 1 || blur === "NaN") {
+  const parsedBlur = parseInt(blur)
+
+  if (parsedBlur === 0) {
+    setBlur(1);
+    return;
+  }
+
+  if (!parsedBlur || parsedBlur === 1) {
     setBlur(2);
     return;
   }
-  if (blur === "2" || blur === 2) {
+
+  if (blur === 2) {
     setBlur(0);
-    return;
-  }
-  if (blur === "0" || blur === 0) {
-    setBlur(1);
     return;
   }
 }
@@ -442,5 +445,3 @@ contrastDefCheck();
 contrastDefCheck();
 animationCheck();
 animationDefCheck();
-
-backgroundInputUrl("https://imageupload.io/ib/NhSlJwn3dL2qyar_1699500768.jpg");
