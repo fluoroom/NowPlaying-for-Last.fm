@@ -85,7 +85,7 @@ function blurr() {
     return;
   }
 
-  if (blur === 2) {
+  if (parsedBlur === 2) {
     setBlur(0);
     return;
   }
