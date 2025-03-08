@@ -136,6 +136,10 @@ body {
   transition: linear width 1s;
   min-width: 1rem;
 }
+#song-year {
+font-weight: 400;
+font-size: 2.5em;
+}
 
 .settings-div {
   padding: 5px 10px 5px 10px;

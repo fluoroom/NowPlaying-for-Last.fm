@@ -217,6 +217,28 @@ function setInformations(response) {
   $("#song-artist").text(artistSong);
   $("#song-album").text(albumSong);
   document.title = title;
+  
+  // Get release year from Discogs
+  fetch(`https://api.discogs.com/database/search?artist=${encodeURIComponent(artistSong)}&release_title=${encodeURIComponent(albumSong)}&key=SYHPUeMqGHMYLlbSHJqd&secret=OiyqPOhZUgMKUwFDuxvQvfKPDAXqJFtF&per_page=90&page=1`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.results && data.results.length > 0) {
+        // Find earliest release year
+        const earliestYear = data.results.reduce((earliest, result) => {
+          const year = parseInt(result.year);
+          if (!isNaN(year) && (!earliest || year < earliest)) {
+            return year;
+          }
+          return earliest;
+        }, null);
+        
+        if (earliestYear) {
+          $("#song-year").text(earliestYear);
+        }
+      }
+    })
+    .catch(error => console.log('Error fetching Discogs data:', error));
+
   needRefresh = 0;
 }
 
