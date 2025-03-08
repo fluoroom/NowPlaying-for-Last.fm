@@ -219,7 +219,7 @@ function setInformations(response) {
   document.title = title;
   
   // Get release year from Discogs
-  fetch(`https://api.discogs.com/database/search?artist=${encodeURIComponent(artistSong)}&release_title=${encodeURIComponent(albumSong)}&key=SYHPUeMqGHMYLlbSHJqd&secret=OiyqPOhZUgMKUwFDuxvQvfKPDAXqJFtF&per_page=90&page=1`)
+  fetch(`https://api.discogs.com/database/search?artist=${encodeURIComponent(artistSong)}&release_title=${encodeURIComponent(albumSong)}&key=SYHPUeMqGHMYLlbSHJqd&secret=OiyqPOhZUgMKUwFDuxvQvfKPDAXqJFtF&per_page=10&page=1`)
     .then(response => response.json())
     .then(data => {
       if (data.results && data.results.length > 0) {
