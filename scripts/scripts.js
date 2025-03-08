@@ -4,11 +4,9 @@ function changeUser() {
   while (!newUser) {
     prompted = prompt("Enter a valid Last.fm user please:");
     if (prompted) {
-      prompted = prompted.trim();
-      newUser = prompted;
+      newUser = prompted.trim();
     } else {
-      const actualUser = localStorage.getItem("user");
-      newUser = actualUser;
+      newUser = localStorage.getItem("user");
     }
   }
   localStorage.setItem("user", newUser);
@@ -16,7 +14,7 @@ function changeUser() {
 
 /* View in fullscreen */
 function openFullscreen() {
-  let elem = document.documentElement;
+  const elem = document.documentElement;
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
   } else if (elem.mozRequestFullScreen) {
@@ -47,45 +45,38 @@ function closeFullscreen() {
   }
 }
 
-function fullscreen() {
-  let isFullscreen = document.fullscreen;
-
-  if (isFullscreen) {
-    closeFullscreen();
-  } else {
-    openFullscreen();
-  }
+function toggleFullscreen() {
+  const isFullscreen = document.fullscreen;
+  isFullscreen ? closeFullscreen() : openFullscreen();
 }
 
 function setBlur(value = 1) {
-  const el = document.getElementById("background-image-div");
-  let numbers = [0, 1, 2];
-
-  delete numbers[value];
-
+  const backgroundElement = document.getElementById("background-image-div");
+  const possibleValues = [0, 1, 2];
+  
+  delete possibleValues[value];
   localStorage.setItem("blur", value.toString());
-  el.classList.add("background-image-div-" + value);
-
-  numbers.forEach((number) => {
-    el.classList.remove("background-image-div-" + number);
+  
+  backgroundElement.classList.add(`background-image-div-${value}`);
+  possibleValues.forEach(number => {
+    backgroundElement.classList.remove(`background-image-div-${number}`);
   });
 }
 
-function blurr() {
-  const blur = localStorage.getItem("blur");
-  const parsedBlur = parseInt(blur)
-
-  if (parsedBlur === 0) {
+function toggleBlur() {
+  const currentBlur = parseInt(localStorage.getItem("blur"));
+  
+  if (currentBlur === 0) {
     setBlur(1);
     return;
   }
 
-  if (!parsedBlur || parsedBlur === 1) {
+  if (!currentBlur || currentBlur === 1) {
     setBlur(2);
     return;
   }
 
-  if (parsedBlur === 2) {
+  if (currentBlur === 2) {
     setBlur(0);
     return;
   }
